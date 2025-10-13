@@ -282,5 +282,5 @@ cnewrap allrun -r Tbai -i genomes -t CNE.tre -g Tbai.cds.gff
 
 <pre>
 cd CNEWRAP/example/
-sh run_example.sh
+./run_example.sh
 </pre>
