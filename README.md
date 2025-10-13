@@ -172,7 +172,7 @@ options:
 
 ---
 
-### step 4: extract and manipulate CNE alignments and sequence information
+### 4. extract and manipulate CNE alignments and sequence information
 
 The **`trace`** module is used to extract, manipulate, and annotate **CNE alignments and sequence information** after CNE identification.  
 It links conservation scores (from **GERP** and **PhastCons**) with reference genome annotations, allowing users to trace the genomic context of each conserved region and prepare sequence files.
@@ -198,7 +198,7 @@ options:
 
 ---
 
-### step 5: identify accelerated CNEs for specific species/clades
+### 5. identify accelerated CNEs for specific species/clades
 
 The **`evolve`** module is designed to detect **accelerated evolution in conserved noncoding elements (CNEs)** for specific species or clades.  
 It compares the evolutionary rate of CNEs in foreground species against background lineages using phylogenetic models, allowing users to pinpoint regions under potential positive selection or lineage-specific acceleration.  

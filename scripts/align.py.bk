@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+import os
+from CNEwrap.FormatGenome import prepare_genomes 
+from CNEwrap.RunLastz import LZ
+from CNEwrap.utils import subrunpool
+
+def batch_lz(referenceDir,query2bit,divtime,cmdir):
+	mylz=LZ(referenceDir,query2bit,divtime,cmdir)
+	mylz.batch_lastz()
+	mylz.batch_chain2maf()
+	
+def genome_align(genomedir,refgenome,splitn,divtime,cmdir):
+	(ref_dir,tar_dir)=prepare_genomes(genomedir,refgenome,splitn,cmdir,False)
+	tar_sps=os.listdir(tar_dir)
+	
+	for tarsp in tar_sps:
+		qury2bit=os.path.join(tar_dir,tarsp,tarsp+".2bit")
+		batch_lz(ref_dir,qury2bit,divtime,cmdir)
+
+if __name__ == '__main__':
+	refgenome = "simHuman"
+	genomedir = "inputs/mammals"
+	cmdir="/home/ycc/OSshare/STAGEV/bin"
+	splitn = 2
+	divtime="near"
+	genome_align(genomedir,refgenome,splitn,divtime,cmdir)
