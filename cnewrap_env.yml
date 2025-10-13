@@ -1,0 +1,22 @@
+name: cnewrap_env 
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.11
+  - biopython
+  - ete3
+  - drmaa
+  - numpy
+  - scipy
+  - pybedtools
+  - tqdm
+  - dill
+# --- R Environment ---
+  - r-base=4.3
+  - r-phangorn
+  - r-weights
+
+# --- Optional / useful tools ---
+#pip install git+https://github.com/hbristow/gridengine

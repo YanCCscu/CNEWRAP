@@ -1,0 +1,100 @@
+
+Reading input data...
+Propagate the phenotypes into the tree, spot the loss nodes
+
+Propagating the phenotypes from the leaves to the branches using Dollo parsimony...
+
+Reorder the tree so that nodes and tips follow the postorder...
+Make a data frame from the loss nodes
+lossNodes: Zviv Bcon Pgut Tele Sund-Lsac Nnaj-Ptex Dacu-Cvir 
+lossTime: -1 -1 -1 -1 -1 -1 -1 
+
+Branch status
+          br status
+1       Ggal      0
+2       Phum      0
+3       Zviv      0
+4       Sund      0
+5       Lsac      0
+6       Bcon      0
+7       Nnaj      0
+8       Ptex      0
+9       Nscu      0
+10      Tbai      1
+11      Pgut      0
+12      Tele      0
+13      Dacu      0
+14      Cvir      0
+15 Ggal-Zviv     -1
+16 Ggal-Phum      0
+17 Zviv-Sund      1
+18 Sund-Bcon      1
+19 Sund-Lsac      0
+20 Bcon-Nnaj      1
+21 Nnaj-Dacu      1
+22 Nnaj-Tbai      1
+23 Nnaj-Ptex      0
+24 Ptex-Nscu      0
+25 Tbai-Tele      1
+26 Tbai-Pgut      1
+27 Dacu-Cvir      0
+
+Loss nodes
+   lossNode lossTime
+1      Zviv       -1
+2      Bcon       -1
+3      Pgut       -1
+4      Tele       -1
+5 Sund-Lsac       -1
+6 Nnaj-Ptex       -1
+7 Dacu-Cvir       -1
+Fill the branch catalog
+
+Preparing the tree...
+          br         len stat          w      mPid thresh subTree            path
+1  Ggal-Phum 0.113289000    1 0.85940829 0.9521296      0      -1              -1
+2       Ggal 0.058700600    1 0.76493876 0.9742652      0      -1              -1
+3       Phum 0.073967700    1 0.80727692 0.9679772      0      -1              -1
+4  Zviv-Sund 0.110840000    1 0.85796695 0.9530710      0      -1              -1
+5       Zviv 0.077478400    0 0.81148699 0.9665242      0       1              -1
+6  Sund-Bcon 0.007941240    1 0.35023996 0.9963407      0      -1              -1
+7  Sund-Lsac 0.011221000    0 0.43018240 0.9948737      0       5              -1
+8       Sund 0.073208500    0 0.80677514 0.9682908      0       5            Sund
+9       Lsac 0.084993300    0 0.81453106 0.9634233      0       5            Lsac
+10 Bcon-Nnaj 0.082846400    1 0.81476547 0.9643075      0      -1              -1
+11      Bcon 0.026683200    0 0.60041638 0.9879350      0       2              -1
+12 Nnaj-Dacu 0.024426400    1 0.58178266 0.9889355      0      -1              -1
+13 Nnaj-Tbai 0.007954670    1 0.35058939 0.9963347      0      -1              -1
+14 Nnaj-Ptex 0.010496600    0 0.41453304 0.9951952      0       6              -1
+15      Nnaj 0.010509500    0 0.41481172 0.9951895      0       6            Nnaj
+16 Ptex-Nscu 0.006615120    0 0.31573691 0.9969366      0       6              -1
+17      Ptex 0.005450470    0 0.28543498 0.9974599      0       6 Ptex-Nscu, Ptex
+18      Nscu 0.004288410    0 0.23476011 0.9979950      0       6 Ptex-Nscu, Nscu
+19 Tbai-Tele 0.002929030    1 0.16034367 0.9986306      0      -1              -1
+20 Tbai-Pgut 0.000923136    1 0.05053517 0.9995684      0      -1              -1
+21      Tbai 0.008249750    1 0.35826679 0.9962021      0      -1              -1
+22      Pgut 0.013028700    0 0.46923450 0.9940713      0       3              -1
+23      Tele 0.021630700    0 0.54410544 0.9901882      0       4              -1
+24 Dacu-Cvir 0.014930100    0 0.51031083 0.9932273      0       7              -1
+25      Dacu 0.007376560    0 0.33554809 0.9965944      0       7            Dacu
+26      Cvir 0.010891300    0 0.42305982 0.9950200      0       7            Cvir
+Check that each tree-leaf has a phenotype
+
+Phenotype:
+Bcon	0	
+Cvir	0	
+Dacu	0	
+Ggal	0	
+Lsac	0	
+Nnaj	0	
+Nscu	0	
+Pgut	0	
+Phum	0	
+Ptex	0	
+Sund	0	
+Tbai	1	
+Tele	0	
+Zviv	0	
+Removing 0 species with unknown phenotype
+
+Loop over the genomic elements...

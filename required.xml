@@ -1,0 +1,41 @@
+python 3.8.3 
+ete3
+Biopython
+
+lastz
+multiz
+prank
+
+
+-pip
+pybedtools
+pysam
+
+pip install drmaa
+export DRMAA_LIBRARY_PATH=/data/nfs2/lrh/CNEWRAP/lib/libdrmaa.so.1.0
+pip install dill
+pip install git+https://github.com/hbristow/gridengine
+
+
+conda install conda-forge::ete3
+conda install biopython
+python cnewrap.py -h
+conda install pybedtools 
+
+conda install conda-forge::mysqlclient
+
+conda install conda-forge::mysql
+
+
+
+github 
+GenomeAlignmentTools
+sudo apt-get install uuid-dev
+sudo apt install libpcap-dev libssl-dev
+sudo apt-get install zlib1g-dev
+sudo apt install r-base-core
+
+
+R
+phangorn
+xtermStyle
