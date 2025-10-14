@@ -41,7 +41,7 @@ python $CNEHOME/cnewrap.py -h
 ---
 
 CNEwrap provides a series of modular subcommands that can be executed independently or as a complete workflow.
-It performs genome alignments, CNE detection, evolutionary rate estimation, and result tracing in a single streamlined pipeline.
+It performs genome alignments, CNE detection, evolutionary rate estimation.
 
 ---
 
@@ -63,7 +63,7 @@ It performs genome alignments, CNE detection, evolutionary rate estimation, and 
 | **scne**   | Scan the entire aligned genome to identify **conserved noncoding elements (CNEs)** using **GERP** and **Phast** methods. |
 | **trace**  | Extract and manipulate CNE alignments and sequence information for downstream analysis.                                  |
 | **evolve** | Detect **accelerated CNEs** for specific species or clades.                                                              |
-| **allrun** | Execute all major steps sequentially — equivalent to running the full pipeline.                                          |
+| **allrun** | Execute all steps sequentially — equivalent to running the full pipeline.                                                |
 
 ---
 
@@ -277,7 +277,7 @@ options:
 Run the full pipeline with default parameters:
 
 ```bash
-cnewrap allrun -r Tbai -i genomes -t CNE.tre -g Tbai.cds.gff
+cnewrap allrun -r refsp -i genomes_dir -t CNE.tre -g refsp.cds.gff
 ```
 
 <pre>
