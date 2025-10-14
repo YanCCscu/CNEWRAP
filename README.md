@@ -1,4 +1,4 @@
-# CNEwrap: an integrated pipeline for estimating Convergent accelerated evolutionary conserved non-coding elements
+# CNEwrap: A scalable toolkit with a novel algorithm for large-scale genome-wide accelerated conserved non-coding elements detection
 ---
 **CNEwrap** is a Python-based pipeline designed to identify **conserved noncoding elements (CNEs)** across multiple genomes, perform multiple sequence alignments, and conduct evolutionary analyses, specifically focusing on CNEs.
 
