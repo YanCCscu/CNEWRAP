@@ -4,7 +4,7 @@
 
 ## Install
 ```bash
-git clone [https://github.com/YanCCscu/CNEWRAP.git](https://github.com/YanCCscu/CNEWRAP.git)
+git clone https://github.com/YanCCscu/CNEWRAP.git
 conda env create -f cnewrap_env.yml
 conda activate cnewrap_env
 ````
