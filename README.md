@@ -1,7 +1,18 @@
-<img src="https://private-user-images.githubusercontent.com/42508147/502349357-e5f6e716-10be-4563-b7ec-087e2ecdde57.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjA2NjYzODMsIm5iZiI6MTc2MDY2NjA4MywicGF0aCI6Ii80MjUwODE0Ny81MDIzNDkzNTctZTVmNmU3MTYtMTBiZS00NTYzLWI3ZWMtMDg3ZTJlY2RkZTU3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTEwMTclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMDE3VDAxNTQ0M1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWYxNWQ5MjkzZTFmNDg0ZmFjMGY5NDRlMDYwNzU3OWYwNTA5NDhjOTQyZmYxNGMxNGE1NmExNzdmYTg5NWZjZjMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.FPEYWxK77lpYcOyM8R-LT4fdLHkYBAlvKRIhrg38udI" alt="LOGO of CNEwrap" width="600" height="400" />
 # CNEwrap: A scalable toolkit with a novel algorithm for large-scale genome-wide accelerated conserved non-coding elements detection
 ---
-**CNEwrap** is a Python-based pipeline designed to identify **conserved noncoding elements (CNEs)** across multiple genomes, perform multiple sequence alignments, and conduct evolutionary analyses, specifically focusing on CNEs.
+<p>
+  <img src="https://private-user-images.githubusercontent.com/42508147/502351229-c77db651-3934-4819-a17f-60f41c46c4b0.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjA2NjY4NTYsIm5iZiI6MTc2MDY2NjU1NiwicGF0aCI6Ii80MjUwODE0Ny81MDIzNTEyMjktYzc3ZGI2NTEtMzkzNC00ODE5LWExN2YtNjBmNDFjNDZjNGIwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTEwMTclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMDE3VDAyMDIzNlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTE4OGQzZDhkNzljMDY1ZjBjNTg0ZDcwMDJmYzJkYmRkMjgyYzY0YjFjNjA5MzYxNWU0NGVkOTg3NTUwOTIyOTQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.YqizRz7KFSeN0By0IXi5FFdT_X1QKlIiGvySZi_bhVE" 
+       alt="logo" 
+       width="150" 
+       align="left" 
+       style="margin-right: 15px; margin-bottom: 15px;">
+ <br>
+ <br> 
+ <b>CNEwrap</b> is a Python-based pipeline designed to identify conserved noncoding elements (CNEs) across multiple genomes, perform multiple sequence alignments, and conduct evolutionary analyses, specifically focusing on CNEs.  
+ <br>
+ <br>
+ <br> 
+</p>
 
 ## Install
 ```bash
