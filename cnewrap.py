@@ -6,15 +6,15 @@ from CNEwrap.merge import merge_maf
 from CNEwrap.scan import cne_scan
 from CNEwrap.trace import trace_seqs 
 from CNEwrap.evolve import acc_cne
-VERSION="1.2"
+VERSION="1.2.0"
 cmdir=os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])),"bin")
 os.environ['DRMAA_LIBRARY_PATH']=os.path.join(cmdir,"lib","libdrmaa.so.1.0")
 os.system('export DRMAA_LIBRARY_PATH')
 if __name__ == '__main__':
 	#program_dir=os.path.dirname(os.path.abspath(sys.argv[0]))
 #############parse arguments#############
-	parser = argparse.ArgumentParser(prog="CNEwrap",epilog="example: cnewrap allrun -r abc -i genomes",
-	description='CNEWRAP: an integrated pipeline for estimating accelerated evolutionary conserved non-coding elements')
+	parser = argparse.ArgumentParser(prog="CNEwrap",epilog="example: cnewrap allrun -r Tbai -i genomes -t CNE.tre -g Tbai.cds.gff",
+	description='CNEwrap: an integrated pipeline for estimating Convergent accelerated evolutionary conserved non-coding elements')
 	subparsers = parser.add_subparsers(title="subprocess",dest='command')
 	parser.add_argument("-v", "--version", action="store_true",dest="version", help="print the version")
 	#parser.add_argument("-r", "--refgenome", action="store",dest="refgenome", help="reference genome for aligning to")
@@ -26,7 +26,7 @@ if __name__ == '__main__':
 	scne = subparsers.add_parser('scne', help='scan whole aligned gnome to identify CNEs with two method: GERP and Phast',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 	trace = subparsers.add_parser('trace', help='extract and manipulate CNE alignments and sequence information',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 	evolve = subparsers.add_parser('evolve', help='identify accelerated CNEs for specific species/clades',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-	allrun = subparsers.add_parser('allrun', help='run all steps',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+	allrun = subparsers.add_parser('allrun', help='perform all processes sequentially',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 #command 'align'
 	"""
 	genome_align(genomedir,refgenome,splitn,divtime,cmdir)
@@ -115,10 +115,9 @@ if __name__ == '__main__':
 	evolve.set_defaults(func=acc_cne)
 
 #define allbyone
-
 	def allbyone(genomedir,refgenome,treefile,gfffile,fgspecies,splitn,divtime,cmdir,suffix,\
 		mafdir="AllMAF",mafblock="MAFBlock",splitmaf="splitmaf",phastdir="phast_dir",gerpdir="gerp_dir",\
-		fasdir="bed_fasta",bedkey="cne",\
+		fasdir="bed_fasta",bedkey="cne",phylopmod="",targetdir="targetdir",sge_para="-l vf=4G,p=2 -pe smp 2",\
 		bgfile=None,fraction=1,gaps=1,evo_method="all",distfile=None,\
 		invoke_sge=False,maxjobs=100,check_interval=10,dryrun=False):
 		# Step 1. Alignment
@@ -128,14 +127,14 @@ if __name__ == '__main__':
 		
 		# Step 2. Merge maf
 		print("[2/5] Merge MAF files ...")
-		merge_maf(treefile,refgenome,suffix,cmdir,mafdir="AllMAF",targetdir="target",renamechr=False, \
+		merge_maf(treefile,refgenome,suffix,cmdir,mafdir="AllMAF",targetdir=targetdir,renamechr=False, \
 		invoke_sge=invoke_sge,sge_para="-l vf=10G,p=1",maxjobs=maxjobs,check_interval=check_interval,\
 		bypass_rename=False,increment=False, dryrun=dryrun)
 		
 		# Step 3. Scan for CNEs
 		print("[3/5] Scan for CNEs ...")
 		cne_scan(mafblock,treefile,refgenome,splitmaf,phastdir,gerpdir,cmdir,\
-		mafinfofile="",phylopmod="",invoke_sge=invoke_sge,ncpu=40,maxjobs=maxjobs,check_interval=1,\
+		mafinfofile="",phylopmod=phylopmod,invoke_sge=invoke_sge,ncpu=40,maxjobs=maxjobs,check_interval=1,\
 		sge_para="-l vf=1G,p=1",cne_method="both")
 		
 		# Step 4. Trace sequences
@@ -144,6 +143,8 @@ if __name__ == '__main__':
 		
 		# Step 5. Evolutionary acceleration
 		print("[5/5] Detect accelerated CNEs ...")
+		if not phylopmod:
+			phylopmod="mergedsplit.mod" #default modfile name 
 		acc_cne(fasdir,treefile,fgspecies,phylopmod,cmdir,bgfile=None,fraction=1,gaps=1,evo_method="all",distfile=None)
 		print("=== [CNEwrap allrun finished successfully] ===")
 #command 'TF bind motif'
