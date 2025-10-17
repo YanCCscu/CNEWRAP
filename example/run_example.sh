@@ -9,6 +9,7 @@ export PATH=$PATH:${CNEHOME}/bin
 #produce lastz.dist
 python  $CNEHOME/CNEwrap/TreeManipulation.py CNE.tre Tbai
 
+gunzip  input_genomes/*.gz
 #you can modify lastz.dist to give suitable distance of each species pair [far,medium,near]
 python $CNEHOME/cnewrap.py align -r Tbai -t CNE.tre -g input_genomes -n 20 -d lastz.dist 
 # ro you can run the above scripts in SGE clusters with --invoke_sge
