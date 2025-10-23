@@ -35,15 +35,15 @@ conda install yccscucib::cnewrap
 
 #### Mandatory:
 
-1.  **Genome Directory:** A directory **containing** genome sequence files in FASTA format. The prefix of each file name will be used as the **species identifier** in the provided species tree.
-2.  **Species Tree:** A phylogenetic tree in **Newick format** that includes branch length information. (Note: If you do not have a species tree, you can construct one using a provided script—see `obtain_4d.sh`—after the alignment process).
-3.  **Reference GFF:** A GFF file for the reference genome. **Only CDS items** within this file will be used for masking or analysis.
+1.  **Genome Directory:** A directory containing genome sequence files in FASTA format. The prefix of each file name will be used as the species identifier in the provided species tree.
+2.  **Species Tree:** A phylogenetic tree in Newick format that includes branch length information. (Note: If you do not have a species tree, you can construct one using a provided script—see `obtain_4d.sh`—after the alignment process).
+3.  **Reference GFF:** A GFF file for the reference genome. Only CDS items within this file will be used for masking or analysis.
 
 #### Optional:
 
 1.  **`lastz.dist`:** Contains distance information between the reference species and every non-reference species.
-2.  **`.mod`:** A phylogenetic model file used for the **phast** process.
-3.  **`.dist`:** A distance file used for the **EvoAcc** process.
+2.  **`.mod`:** A phylogenetic model file used for the phast process.
+3.  **`.dist`:** A distance file used for the EvoAcc process.
 
 ### Basic Command
 
@@ -70,11 +70,11 @@ It performs genome alignments, CNE detection, evolutionary rate estimation.
 
 | Subcommand | Description                                                                                                              |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------ |
-| **align**  | Perform whole-genome alignment using **LASTZ**.                                                                          |
-| **merge**  | Merge pairwise MAF alignments into **multi-way alignments** that include all species.                                    |
-| **scne**   | Scan the entire aligned genome to identify **conserved noncoding elements (CNEs)** using **GERP** and **Phast** methods. |
+| **align**  | Perform whole-genome alignment using LASTZ.                                                                          |
+| **merge**  | Merge pairwise MAF alignments into multi-way alignments that include all species.                                    |
+| **scne**   | Scan the entire aligned genome to identify conserved noncoding elements (CNEs) using GERP and Phast methods. |
 | **trace**  | Extract and manipulate CNE alignments and sequence information for downstream analysis.                                  |
-| **evolve** | Detect **accelerated CNEs** for specific species or clades.                                                              |
+| **evolve** | Detect accelerated CNEs for specific species or clades.                                                              |
 | **allrun** | Execute all steps sequentially — equivalent to running the full pipeline.                                                |
 
 ---
@@ -82,8 +82,8 @@ It performs genome alignments, CNE detection, evolutionary rate estimation.
 
 ### 1. whole genome alignment with lastz
 
-The `align` module performs **whole-genome alignment** among all species listed in the input tree.  
-It uses **LASTZ** as the alignment engine to generate pairwise alignment files between the reference genome and all other genomes.  
+The `align` module performs whole-genome alignment among all species listed in the input tree.  
+It uses LASTZ as the alignment engine to generate pairwise alignment files between the reference genome and all other genomes.  
 Please note that the prefix of each FASTA file in GENOMEDIR must correspond exactly to the species name in the input tree. 
 For local runs, -n controls the number of genome segments used for parallel processing.
 Use --dryrun to verify the generated commands before launching large-scale alignment jobs.
@@ -149,8 +149,8 @@ options:
 
 ### 3. scan whole aligned gnome to identify CNEs with two method: GERP and Phast
 
-The **`scne`** module is responsible for detecting **conserved noncoding elements (CNEs)** across multiple species based on the multi-species genome alignment results obtained in the previous steps.  
-It integrates **GERP** and **PhastCons** (via the PHAST toolkit) to estimate sequence conservation and identify functionally constrained noncoding regions.  
+The **`scne`** module is responsible for detecting CNEs across multiple species based on the multi-species genome alignment results obtained in the previous steps.  
+It integrates GERP and PhastCons (via the PHAST toolkit) to estimate sequence conservation and identify functionally constrained noncoding regions.  
 
 If a precomputed mafinfo file is provided (--mafinfofile), the program will skip MAF parsing and directly identify CNEs.
 
@@ -186,12 +186,12 @@ options:
 
 ### 4. extract and manipulate CNE alignments and sequence information
 
-The **`trace`** module is used to extract, manipulate, and annotate **CNE alignments and sequence information** after CNE identification.  
-It links conservation scores (from **GERP** and **PhastCons**) with reference genome annotations, allowing users to trace the genomic context of each conserved region and prepare sequence files.
-- Extracts **aligned sequences** corresponding to identified CNEs from multi-species MAF files.  
-- Integrates **GERP** and/or **PhastCons** conservation results for accurate CNE boundary definition.  
-- Generates **BED** files for genomic coordinate visualization and **FASTA** files for sequence-based analyses.  
-- Associates CNEs with annotated genomic features (e.g., CDS, intron, intergenic regions) using reference **GFF** files.  
+The **`trace`** module is used to extract, manipulate, and annotate CNE alignments and sequence information after CNE identification.  
+It links conservation scores (from GER and bPhastCons) with reference genome annotations, allowing users to trace the genomic context of each conserved region and prepare sequence files.
+- Extracts aligned sequences corresponding to identified CNEs from multi-species MAF files.  
+- Integrates GERP and/or PhastCons conservation results for accurate CNE boundary definition.  
+- Generates BED files for genomic coordinate visualization and FASTA files for sequence-based analyses.  
+- Associates CNEs with annotated genomic features (e.g., CDS, intron, intergenic regions) using reference GFF files.  
 
 <pre>
 usage: CNEwrap trace [-h] [-r REFGENOME] [-a GFFFILE] [-e BEDKEY] [-g GERP_DIR] [-p PHAST_DIR] [-s SPLITMAF] [-f FASDIR]
@@ -212,7 +212,7 @@ options:
 
 ### 5. identify accelerated CNEs for specific species/clades
 
-The **`evolve`** module is designed to detect **accelerated evolution in conserved noncoding elements (CNEs)** for specific species or clades.  
+The **`evolve`** module is designed to detect CNEs for specific species or clades.  
 It compares the evolutionary rate of CNEs in foreground species against background lineages using phylogenetic models, allowing users to pinpoint regions under potential positive selection or lineage-specific acceleration.  
 The Supports multiple methods for evolutionary rate assessment phyloP, EvoAcc and ForwardGenomics.
 Useful scripts to run PhyloAcc were also provide and can be found in $CNHOME/scripts.
@@ -247,7 +247,6 @@ CNEwrap offers a modular yet fully automated framework for:
 * Detection of accelerated evolution across lineages
 * Extraction and analysis of conserved regions
 
-Whether running step-by-step or via the **`allrun`** shortcut, CNEwrap provides an efficient and reproducible workflow for comparative genomics and evolutionary analysis.
 
 <pre>
 python ../cnewrap.py allrun -h 
