@@ -17,6 +17,7 @@ dependencies:
   - r-base=4.3
   - r-phangorn
   - r-weights
+  - r-isotone
 
 # --- Optional / useful tools ---
 #pip install git+https://github.com/hbristow/gridengine
