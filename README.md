@@ -231,7 +231,7 @@ options:
   -F FRACTION           fraction of not altnative sites for a locus in alignment (default: 1)
   -G GAPS               fraction of gaps for a locus in alignment (default: 1)
   --evo_method {FG,SP,PP,SPPP,all}
-                        method to asscess acc CNEs (default: SPPP)
+                        method to asscess acc CNEs (FG:ForwardGenomics; SP:EvoAcc PP:phyloP; SPPP: EvoAcc+phyloP; all:the all methods. default: SPPP)
   --distfile DISTFILE   DNA replacematrix file (default: None)
 
 </pre>
@@ -276,7 +276,7 @@ options:
                         time interval to check status of concurrent jobs,valid only when SGE invoked (default: 10)
   --dryrun              runing without implementing it in real conditions (default: False)
   --evo_method {FG,SP,PP,SPPP,all}
-                        method to asscess acc CNEs (default: SPPP)
+                        method to asscess acc CNEs (FG:ForwardGenomics; SP:EvoAcc PP:phyloP; SPPP: EvoAcc+phyloP; all:the all methods. default: SPPP)
   --distfile DISTFILE   DNA replacematrix file (default: None)
 
 </pre>
