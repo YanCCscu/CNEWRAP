@@ -5,19 +5,19 @@ channels:
   - defaults
 dependencies:
   - python=3.11
-  - biopython
-  - ete3
-  - drmaa
-  - numpy
-  - scipy
-  - pybedtools
-  - tqdm
-  - dill
+  - biopython=1.85
+  - ete3=3.1.3
+  - drmaa=0.7.9
+  - numpy=2.2.6
+  - scipy=1.14.1
+  - pybedtools=0.10.0
+  - tqdm=4.67.1
+  - dill=0.3.8
 # --- R Environment ---
   - r-base=4.3
-  - r-phangorn
-  - r-weights
-  - r-isotone
+  - r-phangorn=2.12.1
+  - r-weights=1.0.4
+  - r-isotone=1.1.1
 
 # --- Optional / useful tools ---
 #pip install git+https://github.com/hbristow/gridengine
