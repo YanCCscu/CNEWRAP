@@ -110,6 +110,7 @@ options:
   --dryrun              runing without implementing it in real conditions (default: False)
 
 </pre>
+For genomic datasets with broad taxonomic coverage, using multiple reference genomes effectively mitigates information loss caused by large-scale deletions and improves detection accuracy. If computational resources permit and better alignment results are desired, it is recommended to use two reference genomes.
 
 ---
 
