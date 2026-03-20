@@ -1,7 +1,7 @@
 # CNEwrap: A scalable toolkit with a novel algorithm for large-scale genome-wide accelerated conserved non-coding elements detection
 ---
 <p>
-  <img src="https://private-user-images.githubusercontent.com/42508147/502351229-c77db651-3934-4819-a17f-60f41c46c4b0.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjA2NjY4NTYsIm5iZiI6MTc2MDY2NjU1NiwicGF0aCI6Ii80MjUwODE0Ny81MDIzNTEyMjktYzc3ZGI2NTEtMzkzNC00ODE5LWExN2YtNjBmNDFjNDZjNGIwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTEwMTclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMDE3VDAyMDIzNlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTE4OGQzZDhkNzljMDY1ZjBjNTg0ZDcwMDJmYzJkYmRkMjgyYzY0YjFjNjA5MzYxNWU0NGVkOTg3NTUwOTIyOTQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.YqizRz7KFSeN0By0IXi5FFdT_X1QKlIiGvySZi_bhVE" 
+  <img src="https://github.com/YanCCscu/CNEWRAP/blob/master/CNEwrap.png" 
        alt="logo" 
        width="150" 
        align="left" 
