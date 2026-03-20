@@ -110,7 +110,7 @@ options:
   --dryrun              runing without implementing it in real conditions (default: False)
 
 </pre>
-For genomic datasets with broad taxonomic coverage, using multiple reference genomes effectively mitigates information loss caused by large-scale deletions and improves detection accuracy. If computational resources permit and better alignment results are desired, it is recommended to use two reference genomes.
+For genomic datasets with broad taxonomic coverage, using multiple reference genomes effectively mitigates information loss caused by large-scale deletions and improves detection accuracy. If computational resources permit and better alignment results are desired, it is recommended to use two reference genomes. The two sets of alignment results can be merged by referring to the `merge_two_species.sh` script.
 
 Output files of `align` module:
 `reference` directory: Stores the genome fasta file of the reference species and its corresponding lastz alignment files (2bit and size files).
