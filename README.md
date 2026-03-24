@@ -263,15 +263,15 @@ Output files of `evolve` module:
 `CNEanc.tre`: species tree with ancestral node annotations.
 `ID.list`: list of all CNE IDs.
 `ID.pheno`: species phenotype file used to define foreground and background branches.
-`Output.txt`: ForwardGenomics result file containing CNEs and statistics for accelerated evolution inference.
+`Output.txt`: ForwardGenomics result file containing CNEs and statistics for accelerated evolution inference. Results with weightedPearsonCorrelation_Pvalue < 0.05 or GLS_Pvalue < 0.05 are considered significant.
 `Output.txt.log`: log file for ForwardGenomics running.
 
 `PPout` directory:
-`PhyloP.txt`: includes CNEs and statistics for accelerated evolution inference.
+`PhyloP.txt`: includes CNEs and statistics for accelerated evolution inference. Results with a `pval` column < 0.01 and > -0.01 are considered significant.
 
 `SPout` directory:
-`statsum.tsv`: contains acc_score values and related statistics for each variable site within CNEs.
-`SPsum.tsv`: provides overall CNE variation levels and significance test results for accelerated evolution.
+`statsum.txt`: contains acc_score values and related statistics for each variable site within CNEs.
+`SPsum.tsv`: provides overall CNE variation levels and significance test results for accelerated evolution. Results with a `pvalue` column < 0.05 are considered significant.
 
 ---
 
