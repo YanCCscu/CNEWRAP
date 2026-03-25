@@ -271,7 +271,7 @@ Output files of `evolve` module:
 
 `SPout` directory:
 `statsum.txt`: contains acc_score values and related statistics for each variable site within CNEs.
-`SPsum.tsv`: provides overall CNE variation levels and significance test results for accelerated evolution. Results with a `pvalue` column < 0.05 are considered significant.
+`SPsum.tsv`: provides overall CNE variation levels and significance test results for accelerated evolution. Results with a `pvalue` column < 0.01 are considered significant.
 
 ---
 
