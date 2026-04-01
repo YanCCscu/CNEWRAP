@@ -36,7 +36,7 @@ conda install yccscucib::cnewrap
 #### Mandatory:
 
 1.  **Genome Directory:** A directory containing genome sequence files in FASTA format. The prefix of each file name will be used as the species identifier in the provided species tree.
-2.  **Species Tree:** A phylogenetic tree in Newick format that includes branch length information. (Note: If you do not have a species tree, you can construct one using a provided script—see `obtain_4d.sh`—after the alignment process).
+2.  **Species Tree:** A phylogenetic tree in Newick format that includes branch length information. (Note: If you do not have a species tree, you can construct one using a provided script—see `mafTo4d.py`—after the alignment process).
 3.  **Reference GFF:** A GFF file for the reference genome. Only CDS items within this file will be used for masking or analysis.
 
 #### Optional:
