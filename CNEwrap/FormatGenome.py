@@ -64,6 +64,7 @@ def prepare_genomes(genomedir,refgenome,treefile,splitn,cmdir,dotrf=False):
 	os.makedirs(ref_dir, exist_ok=True)
 	os.makedirs(tar_dir, exist_ok=True)
 	treenodes=get_tree_node(treefile)
+	print("Tree nodes:",treenodes)
 
 	all_files =glob(os.path.join(genomedir, "*.fa*")) 
 	ref_file = glob(os.path.join(genomedir, "%s*"%refgenome))
@@ -91,10 +92,12 @@ def prepare_genomes(genomedir,refgenome,treefile,splitn,cmdir,dotrf=False):
 		print("deal with %s ..."%g)
 		tar_sp = os.path.basename(g).replace(f'.{suffix}', '')
 		if tar_sp in treenodes:
+			print("found %s in tree"%tar_sp)
 			tar_dir_sp = os.path.join(tar_dir, tar_sp)
 			os.makedirs(tar_dir_sp, exist_ok=True)
 			tar_list.append((g,tar_dir_sp,cmdir))
 	tarlen=len(tar_list)
+	print("There are %s target genomes will be processed"%tarlen)
 	runpool(fasize,tar_list,tarlen)
 	runpool(fa2bit,tar_list,tarlen)
 	return(ref_dir,tar_dir)
