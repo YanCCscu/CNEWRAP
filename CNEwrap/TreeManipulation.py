@@ -27,7 +27,8 @@ def get_tree_node(treefile):
 	allnodes=[]
 	for node in t.traverse("postorder"):
 		if node.is_leaf():
-			allnodes.append(node.name.split("_")[0])
+			#allnodes.append(node.name.split("_")[0])
+			allnodes.append(node.name.strip())
 	return(allnodes)
 	
 def traverse_from_leaf(treefile, leaf_name):
