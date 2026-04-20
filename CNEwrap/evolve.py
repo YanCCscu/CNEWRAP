@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os,sys
+import os,sys,shutil
 import numpy as np
 from scipy.stats import gamma
 from glob import glob
@@ -18,6 +18,13 @@ def runFG(fasdir,mytree,aimsp,cmdir,outdir="FGout"):
 	pheno=make_pheno(mytree,aimsp)
 	cne_anc_tre=make_anc_tree(mytree)
 	run_FG(cne_anc_tre,pheno,IDlist,peridglobal,peridlocal,outdir,cmdir)
+	#move intermed file together
+	for f in [cne_anc_tre, IDlist, pheno, peridglobal, peridlocal]:
+		fbase = os.path.basename(f)
+		fdst = os.path.join(outdir, fbase)
+		if os.path.exists(fdst):
+			os.remove(fdst)
+		shutil.move(f, fdst)
 
 def cal_rep_mat(maffile,seqnumber=10000,minlen=500):
 	#finalmaf_path="splitmaf/{finalmaf}".format(finalmaf=finalmaf.split(".")[0])
@@ -58,12 +65,13 @@ def phylop(fasdir,phylopmod,fgbranch,cmdir,mytree,phylop_dir="PPout",ncpu=20):
 def acc_cne(fasdir,treefile,fgspecies,phylopmod,cmdir,bgfile=None,fraction=1,gaps=1,evo_method="all",distfile=None):
 	maflist=[maffile for maffile in glob(os.path.join("MAFBlock","*.maf"))]
 	outmaf="mergedsplit.maf"
-	if not phylopmod:
+	if not phylopmod and evo_method in ["PP","SPPP","all"]:
 		print("Calculate phylofit based on MAFBlock")
 		phylopmod=phylofit(maflist,treefile,cmdir,outmaf)
 	if not distfile and evo_method in ["SP","SPPP","all"]:
 		if not os.path.exists("mergedsplit.maf"):
 			cat_mafs(maflist,outmaf)
+		print("Calculate distfile for EvoAcc")
 		distfile=cal_rep_mat("mergedsplit.maf",1000,100)
 	if evo_method == "FG":
 		runFG(fasdir,treefile,fgspecies,cmdir,outdir="FGout")
