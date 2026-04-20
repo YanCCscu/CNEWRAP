@@ -213,14 +213,6 @@ if __name__=="__main__":
 		help='Directory containing MAF files')
 	args = parser.parse_args()
 
-	#bedfile="cne30.bed"
-	#aimsp="simHuman"
-	#fasdir="bed_fasta"
-	#maffile="splitmaf/simHuman1chr7.maf"
-	#mafdir="splitmaf"
-	#bedfile="/data/nfs2/lrh/Tbai_inputs/SimRat/Simulation_ratite/simu_500_200_diffr_2-6.bed3"
-	#maffile="/data/nfs2/lrh/Tbai_inputs/SimRat/Simulation_ratite/simu_500_200_diffr_2-6.fasta"
-	#aimsp="taeGut"
 	bedfile=args.bedfile
 	fasdir=args.fasdir
 	aimsp=args.aimsp
