@@ -1,5 +1,5 @@
 #!/bin/bash
-. /home/ycc/anaconda3/bin/activate /home/ycc/cnewrap_env 
+conda activate cnewrap_env 
 CNEHOME=$(realpath ../)
 export PATH=$PATH:${CNEHOME}/bin
 
