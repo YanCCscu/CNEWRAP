@@ -27,12 +27,6 @@ def runpool(fun,args,thread_num):
 	p.join()
 	return(res)
 
-def subrunpool(fun,args,thread_num):
-	subp = Pool(thread_num)
-	res=subp.starmap(fun,args)
-	subp.close()
-	subp.join()
-	return(res)
 def get_system_id():
 	info = {}
 	with open("/etc/os-release", "r") as f:

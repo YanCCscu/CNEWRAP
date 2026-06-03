@@ -2,15 +2,13 @@
 from functools import reduce
 from glob import glob
 import sys,os,re
-introduction="\n\
-------------------------------------------------------------------\n\
-This program align sequences in you files base on those equal names\n\
-or the names with same begin:\n\
-USAGE:python concatenate.py infile1 infile2 infile3 ... \n\
-      python concatenate.py dir ... \n\
-NOTE: the id should match in each files, the first strings after \'>\'\n\
-and before spaces and \'|\' are assigned id of its following sequence\n\
---------------------------------------------------------------------\n"
+"""Concatenate multiple FASTA files with shared sequence IDs.
+
+Sequences are aligned by matching IDs (first word after '>', before ' ' or '|').
+Missing sequences are padded with 'N's.
+Outputs concatenated FASTA + BED interval file.
+"""
+
 if len(sys.argv)<2:
 	print ('\033[1;32;40m',)	#make sure there are imput files.
 	print (introduction)

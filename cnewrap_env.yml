@@ -18,6 +18,7 @@ dependencies:
   - r-phangorn=2.12.1
   - r-weights=1.0.4
   - r-isotone=1.1.1
+  - r-caper=1.0.4
 
 # --- Optional / useful tools ---
 #pip install git+https://github.com/hbristow/gridengine
