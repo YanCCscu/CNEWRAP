@@ -332,3 +332,5 @@ cnewrap allrun -r refsp -i genomes_dir -t CNE.tre -g refsp.cds.gff
 cd CNEWRAP/example/
 ./run_example.sh
 </pre>
+
+Recommendations for subsequent analysis: Functional transcription factor binding sites (TFBSs) can be identified in the final accelerated CNE dataset using PoSSuM software (https://wwww.cebitec.uni-bielefeld.de/bibiserv.cebitec.uni-bielefeld.de/possumsearch.html) to enable functional prediction of any CNEs you care about.
