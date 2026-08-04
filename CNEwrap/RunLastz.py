@@ -41,7 +41,7 @@ class LZ(object):
 			sys.exit(3)
 		return(linearGap,chainPar,lastzPar)
 	def lastz(self,ref2bit,lastzPar,axtout):
-		lastz_D=os.path.join(self.cmdir,"lastz-distrib-1.03.54/bin/lastz_D")
+		lastz_D=os.path.join(self.cmdir,"lastz-distrib/bin/lastz_D")
 		command="{lastz_D} {ref2bit}[multiple] {query2bit} --chain --gapped --notransition --format=axt {lastzPar} > {axtout}".format(
 				lastz_D=lastz_D,
 				ref2bit=ref2bit,
