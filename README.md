@@ -1,3 +1,5 @@
+
+
 # CNEwrap: A scalable toolkit with a novel algorithm for large-scale genome-wide accelerated conserved non-coding elements detection
 ---
 <p>
@@ -325,7 +327,7 @@ options:
 Run the full pipeline with default parameters:
 
 ```bash
-cnewrap allrun -r refsp -i genomes_dir -t CNE.tre -g refsp.cds.gff
+python $CNEHOME/cnewrap.py allrun -r refsp -g genomes_dir -t CNE.tre -a refsp.cds.gff
 ```
 
 <pre>
