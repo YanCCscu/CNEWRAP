@@ -19,7 +19,7 @@ TARGET_DIRS = \
 all:
 	@for dir in $(TARGET_DIRS); do \
 		echo "Building in $$dir..."; \
-		( cd $$dir && $(MAKE) ); \
+		( cd $$dir && $(MAKE) ) || exit 1; \
 	done
 
 # 清理全部
