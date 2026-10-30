@@ -29,7 +29,7 @@ Alternatively, you can install with the Conda command:
 conda install yccscucib::cnewrap
 ```
 
-In case the bundled binaries do not run on your system, rebuild them from the bundled source code:
+In case the binaries do not run on your system well, rebuild them from the source code:
 
 ```bash
 cd src
