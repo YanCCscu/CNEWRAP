@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
+import os
 import sys
+import shutil
 import subprocess
 import time
 from multiprocessing.pool import Pool
@@ -27,14 +29,16 @@ def runpool(fun,args,thread_num):
 	p.join()
 	return(res)
 
-def get_system_id():
-	info = {}
-	with open("/etc/os-release", "r") as f:
-		for line in f:
-			if "=" in line:
-				key, value = line.strip().split("=", 1)
-				info[key] = value.strip('"')
-	return info.get("ID", "").lower()  # 'centos', 'ubuntu'
+def get_tool(name, cmdir=None):
+	"""Locate an executable: PATH first (conda env bin), then CNEWRAP bundled bin."""
+	path = shutil.which(name)
+	if path:
+		return path
+	if cmdir:
+		bundled = os.path.join(cmdir, name)
+		if os.path.exists(bundled):
+			return bundled
+	raise FileNotFoundError("command not found: %s (searched PATH and %s)" % (name, cmdir))
 
 def print_nested_list(mylist, indent=0):
 	space = "    " * indent  

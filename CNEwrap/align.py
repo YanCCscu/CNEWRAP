@@ -2,7 +2,7 @@
 import os
 from CNEwrap.FormatGenome import prepare_genomes 
 from CNEwrap.RunLastz import LZ
-from CNEwrap.utils import get_system_id,print_nested_list,runcmd,runpool
+from CNEwrap.utils import print_nested_list,runcmd,runpool
 
 
 def batch_lz_dry(referenceDir,query2bit,divtime,cmdir,lzstep=1):
@@ -15,15 +15,7 @@ def runList(commandlist):
 		runcmd(command)
 
 def genome_align(genomedir,refgenome,treefile,splitn,divtime,cmdir,invoke_sge=False,sge_para="-l vf=40G,p=4 -pe smp 4",maxjobs=100,check_interval=10,dryrun=False):
-	ostype=get_system_id()
-	if ostype=="ubuntu":
-		subcmdir=os.path.join(cmdir,"x86_64")
-	elif ostype=="centos":
-		subcmdir=os.path.join(cmdir,"x86_64vc")
-	else:
-		raise ValueError("Error, can not determine your system!!")
-		return(1)
-	(ref_dir,tar_dir)=prepare_genomes(genomedir,refgenome,treefile,splitn,subcmdir,False)
+	(ref_dir,tar_dir)=prepare_genomes(genomedir,refgenome,treefile,splitn,cmdir,False)
 	tar_sps=os.listdir(tar_dir)
 	divdict={}
 	if not divtime in ["far","medium","near"]:

@@ -1,24 +1,16 @@
 #!/usr/bin/env python3
 import os,sys
 from glob import glob
-from CNEwrap.utils import runcmd,runpool,get_system_id
+from CNEwrap.utils import runcmd,runpool,get_tool
 from CNEwrap.TreeManipulation import traverse_from_leaf
 class MZ(object):
 	def __init__(self,treefile,refsp,suffix,AllMAF,cmdir):
 		#command location
-		ostype=get_system_id()
-		if ostype=="ubuntu":
-			subcmdir=os.path.join(cmdir,"x86_64")
-		elif ostype=="centos":
-			subcmdir=os.path.join(cmdir,"x86_64vc")
-		else:
-			raise ValueError("Error, can not determine your system!!")
-			return(1)
 		self.treefile=treefile
 		self.refsp=refsp
 		self.suffix=suffix
 		self.AllMAF=AllMAF
-		self.cmdir=subcmdir
+		self.cmdir=cmdir
 		#self.treenodes = get_tree_node(self.treefile)
 		self.treenodes = traverse_from_leaf(self.treefile,self.refsp)
 		self.filename_map = {}
@@ -43,7 +35,7 @@ class MZ(object):
 		outlevel=len(ABlist)
 		self.filename_map[ABCmaf]=A+".L"+str(inlevel+1)+"."+self.suffix
 		command="{multiz} {ABmaf} {ACmaf} 1 > {ABCmaf}".format(
-		multiz=os.path.join(self.cmdir,"multiz"),
+		multiz=get_tool("multiz",self.cmdir),
 		ABmaf=os.path.join(self.AllMAF,self.filename_map[ABmaf]),
 		ACmaf=os.path.join(self.AllMAF,self.filename_map[ACmaf]),
 		ABCmaf=os.path.join(self.AllMAF,self.filename_map[ABCmaf]))
@@ -82,7 +74,7 @@ class MZ(object):
 	###do split and filter
 	def FilterSplit(self,finalmaf,dryrun=False):
 		os.makedirs("splitmaf",exist_ok=True)
-		mafFilter=os.path.join(self.cmdir,"mafFilter")
+		mafFilter=get_tool("mafFilter",self.cmdir)
 		simfinalmaf=self.filename_map[finalmaf]
 		filtermaf=simfinalmaf.replace(self.suffix,"FILTER."+self.suffix)
 		Fcommand="{mafFilter} -minRow={species_number} -maxRow=500 -minCol=30 -minScore=20000 {simfinalmaf} > {filtermaf}".format(
@@ -94,7 +86,7 @@ class MZ(object):
 			print(Fcommand)
 		else:
 			runcmd(Fcommand)
-		mafSplit=os.path.join(self.cmdir,"mafSplit")
+		mafSplit=get_tool("mafSplit",self.cmdir)
 		Scommand="{mafSplit} -byTarget _.bed -useFullSequenceName splitmaf/{simfinalmaf} {filtermaf}".format(
 			mafSplit=mafSplit,
 			simfinalmaf=simfinalmaf.split(".")[0],

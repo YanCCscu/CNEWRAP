@@ -4,7 +4,7 @@ import os
 import subprocess
 import time
 from glob import glob
-from CNEwrap.utils import runcmd,runpool,get_system_id
+from CNEwrap.utils import runcmd,runpool,get_tool
 
 """
 COMMENT:
@@ -41,7 +41,7 @@ class LZ(object):
 			sys.exit(3)
 		return(linearGap,chainPar,lastzPar)
 	def lastz(self,ref2bit,lastzPar,axtout):
-		lastz_D=os.path.join(self.cmdir,"lastz-distrib/bin/lastz_D")
+		lastz_D=get_tool("lastz",os.path.join(self.cmdir,"lastz-distrib","bin"))
 		command="{lastz_D} {ref2bit}[multiple] {query2bit} --chain --gapped --notransition --format=axt {lastzPar} > {axtout}".format(
 				lastz_D=lastz_D,
 				ref2bit=ref2bit,
@@ -53,20 +53,12 @@ class LZ(object):
 
 	def chain2maf(self,axtfile,chainPar,linearGap,ref2bit):
 		#command location
-		ostype=get_system_id()
-		if ostype=="ubuntu":
-			subcmdir=os.path.join(self.cmdir,"x86_64")
-		elif ostype=="centos":
-			subcmdir=os.path.join(self.cmdir,"x86_64vc")
-		else:
-			raise ValueError("Error, can not determine your system!!")
-			return(1)
-		axtChain = os.path.join(self.cmdir,subcmdir,"axtChain")
-		chainSort = os.path.join(self.cmdir,subcmdir,"chainSort")
-		chainNet = os.path.join(self.cmdir,subcmdir,"chainNet")
-		NetFilter = os.path.join(self.cmdir,subcmdir,"NetFilterNonNested.perl")
-		netToAxt = os.path.join(self.cmdir,subcmdir,"netToAxt")
-		axtToMaf = os.path.join(self.cmdir,subcmdir,"axtToMaf")
+		axtChain = get_tool("axtChain",self.cmdir)
+		chainSort = get_tool("chainSort",self.cmdir)
+		chainNet = get_tool("chainNet",self.cmdir)
+		NetFilter = get_tool("NetFilterNonNested.perl",self.cmdir)
+		netToAxt = get_tool("netToAxt",self.cmdir)
+		axtToMaf = get_tool("axtToMaf",self.cmdir)
 		#file rername
 		ref_path_base=ref2bit.replace(".2bit","")
 		ref_base=os.path.basename(ref_path_base)

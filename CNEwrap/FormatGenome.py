@@ -4,7 +4,7 @@ import os
 import subprocess
 import time
 from glob import glob
-from CNEwrap.utils import runcmd,runpool
+from CNEwrap.utils import runcmd,runpool,get_tool
 from CNEwrap.TreeManipulation import get_tree_node
 
 def get_prefix(sname):
@@ -17,7 +17,7 @@ def run_trf(fa,ref_dir,cmdir):
 	os.makedirs(trf_tmp_dir, exist_ok=True)
 	os.makedirs(ref_trf, exist_ok=True)
 	command="{command} -bed -bedAt={ref_dir}/{ref_trf}/{out}.bed -trf={trfpath} -tempDir={trf_tmp_dir} {fa} {ref_dir}/{ref_trf}/{out}".format(
-		command=os.path.join(cmdir,"trfBig"),
+		command=get_tool("trfBig",cmdir),
 		ref_dir=ref_dir,
 		out=get_prefix(fa),
 		trf_tmp_dir=trf_tmp_dir,
@@ -25,7 +25,7 @@ def run_trf(fa,ref_dir,cmdir):
 		fa=fa)
 	runcmd(command)
 	command="{command} maskfasta -fi {fa} -bed {ref_dir}/{ref_trf}/{out}.bed -fo {fa} -soft".format(
-		command=os.path.join(cmdir,"trfBig"),
+		command=get_tool("trfBig",cmdir),
 		fa=fa,
 		ref_dir=ref_dir,
 		ref_trf=ref_trf,
@@ -34,21 +34,21 @@ def run_trf(fa,ref_dir,cmdir):
 	subprocess.run("/bin/rm -rf %s"%(trf_tmp_dir))
 
 def fa2bit(fa,ref_dir,cmdir):
-	command="{command} {fasta} {ref_dir}/{out}.2bit".format(command=os.path.join(cmdir,"faToTwoBit"),
+	command="{command} {fasta} {ref_dir}/{out}.2bit".format(command=get_tool("faToTwoBit",cmdir),
 		fasta=fa,
 		ref_dir=ref_dir,
 		out=get_prefix(fa))
 	runcmd(command)
 
 def fasize(fa,ref_dir,cmdir):
-	command="{command} {fasta} -detailed > {ref_dir}/{out}.size".format(command=os.path.join(cmdir,"faSize"),
+	command="{command} {fasta} -detailed > {ref_dir}/{out}.size".format(command=get_tool("faSize",cmdir),
 		fasta=fa,
 		ref_dir=ref_dir,
 		out=get_prefix(fa))
 	runcmd(command)
 
 def fasplit(ref_file,splitn,ref_dir,refgenome,cmdir):
-	command="{fasplit} sequence {ref} {splitn} {refpath}".format(fasplit=os.path.join(cmdir,"faSplit"),
+	command="{fasplit} sequence {ref} {splitn} {refpath}".format(fasplit=get_tool("faSplit",cmdir),
 		ref=ref_file,
 		splitn=splitn,
 		refpath=os.path.join(ref_dir,refgenome))
