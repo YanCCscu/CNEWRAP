@@ -11,7 +11,7 @@ LDFLAGS=
 
 OBJECTS = chainNet.o
 
-BIN=../../../bin/x86_64
+BIN ?= ../../../bin
 
 chainNet: $(OBJECTS)
 	$(CC) $(OBJECTS) -o $(BIN)/$@ $(LDFLAGS) $(LIBS)
