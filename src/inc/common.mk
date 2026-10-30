@@ -68,9 +68,6 @@ ifeq ($(UNAME_S),Darwin)
   ifneq ($(wildcard /opt/local/lib/libiconv.a),)
     ICONVLIB = /opt/local/lib/libiconv.a
   endif
-  ifneq ($(wildcard /opt/homebrew/lib/libmysqlclient.a),)
-    MYSQLLIBS = /opt/homebrew/lib/libmysqlclient.a
-  endif
 endif
 
 # Skip freetype for conda build; not needed for utils, and the Mac build environment has
@@ -174,56 +171,6 @@ ifeq (${PNGINCL},)
 #       $(info using libpng-config to set PNGINCL: ${PNGINCL})
 endif
 
-# autodetect where mysql includes and libraries are installed
-# do not need to do this during 'clean' target (this is very slow for 'clean')
-ifneq ($(MAKECMDGOALS),clean)
-
-  # set MYSQL include path
-  ifeq (${MYSQLINC},)
-    MYSQLINC := $(shell mysql_config --include | sed -e 's/-I//' || true)
-#        $(info using mysql_config to set MYSQLINC: ${MYSQLINC})
-  endif
-  ifeq (${MYSQLINC},)
-    ifneq ($(wildcard /usr/local/mysql/include/mysql.h),)
-	  MYSQLINC=/usr/local/mysql/include
-    endif
-  endif
-  ifeq (${MYSQLINC},)
-    ifneq ($(wildcard /usr/include/mysql/mysql.h),)
-	  MYSQLINC=/usr/include/mysql
-    endif
-  endif
-
-  # this does *not* work on Mac OSX with the dynamic libraries
-  ifneq ($(UNAME_S),Darwin)
-    ifeq (${MYSQLLIBS},)
-      MYSQLLIBS := $(shell mysql_config --libs || true)
-#        $(info using mysql_config to set MYSQLLIBS: ${MYSQLLIBS})
-    endif
-  endif
-  ifeq ($(findstring src/hg/,${CURDIR}),src/hg/)
-    ifeq (${MYSQLINC},)
-        $(error can not find installed mysql development system)
-    endif
-  endif
-    # last resort, hoping the compiler can find it in standard locations
-  ifeq (${MYSQLLIBS},)
-      MYSQLLIBS="-lmysqlclient"
-  endif
-endif
-
-# $(info have MYSQLINC: ${MYSQLINC})
-# $(info have MYSQLLIBS: ${MYSQLLIBS})
-
-# OK to add -lstdc++ to all MYSQLLIBS just in case it is
-#    MySQL version 5.6 libraries, but no 'librt' on Mac OSX
-ifeq (${IS_HGWDEV},no)
-  ifeq ($(UNAME_S),Darwin)
-    MYSQLLIBS += -lstdc++
-  else
-    MYSQLLIBS += -lstdc++ -lrt
-  endif
-endif
 
 ifeq (${ZLIB},)
   ZLIB=-lz
@@ -236,26 +183,19 @@ ifeq (${IS_HGWDEV},yes)
    L+=/usr/lib64/libssl.a /usr/lib64/libcrypto.a -lkrb5 -lk5crypto -ldl
    PNGLIB=/usr/lib64/libpng.a
    PNGINCL=-I/usr/include/libpng15
-   MYSQLINC=/usr/include/mysql
-   MYSQLLIBS=/usr/lib64/libmysqlclient.a /usr/lib64/libssl.a /usr/lib64/libcrypto.a -lkrb5 -ldl -lz
-   MYSQLLIBS += /usr/lib/gcc/x86_64-redhat-linux/4.8.5/libstdc++.a /usr/lib64/librt.a
 else
-   ifeq (${CONDA_BUILD},1)
-       L+=${PREFIX}/lib/libssl.a ${PREFIX}/lib/libcrypto.a -ldl
+   ifneq (${SSLLIB},)
+      L+=${SSLLIB}
    else
-       ifneq (${SSLLIB},)
-          L+=${SSLLIB}
-       else
-          L+=-lssl
-       endif
-       ifneq (${CRYPTOLIB},)
-          L+=${CRYPTOLIB}
-       else
-          L+=-lcrypto -ldl
-       endif
-       ifeq (${DLLIB},)
-          L+=-ldl
-       endif
+      L+=-lssl
+   endif
+   ifneq (${CRYPTOLIB},)
+      L+=${CRYPTOLIB}
+   else
+      L+=-lcrypto -ldl
+   endif
+   ifeq (${DLLIB},)
+      L+=-ldl
    endif
 endif
 
@@ -317,7 +257,7 @@ ifeq (${DOCUMENTROOT},)
     DOCUMENTROOT=/usr/local/apache/htdocs
 endif
 ifeq (${BINDIR},)
-    BINDIR = ${BASE_BIN}/bin/${MACHTYPE}
+    BINDIR = ${BASE_BIN}/bin
 endif
 ifeq (${ENCODE_PIPELINE_BIN},)
     ENCODE_PIPELINE_BIN=/cluster/data/encode/pipeline/bin
