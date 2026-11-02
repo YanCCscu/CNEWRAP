@@ -32,7 +32,7 @@ conda install yccscucib::cnewrap
 In case the binaries do not run on your system well, rebuild them from the source code:
 
 ```bash
-cd src
+cd CNEWRAP/src
 make
 ```
 
